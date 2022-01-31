@@ -1,0 +1,266 @@
+{
+  "referenceCulture": {
+    "name": "ebe71f01-ac0c-4f89-add5-afe1ef8140c0",
+    "id": "ebe71f01-ac0c-4f89-add5-afe1ef8140c0",
+    "model": {
+      "name": "Model",
+      "tables": [
+        {
+          "name": "Fruits",
+          "columns": [
+            {
+              "name": "RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61"
+            },
+            {
+              "name": "ID"
+            },
+            {
+              "name": "Fruit"
+            },
+            {
+              "name": "Number"
+            }
+          ]
+        },
+        {
+          "name": "DateTableTemplate_7764104d-ce25-4f55-b084-436c74e4aa55",
+          "columns": [
+            {
+              "name": "RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61"
+            },
+            {
+              "name": "Date"
+            },
+            {
+              "name": "Year"
+            },
+            {
+              "name": "MonthNo"
+            },
+            {
+              "name": "Month"
+            },
+            {
+              "name": "QuarterNo"
+            },
+            {
+              "name": "Quarter"
+            },
+            {
+              "name": "Day"
+            }
+          ],
+          "hierarchies": [
+            {
+              "name": "Date Hierarchy",
+              "levels": [
+                {
+                  "name": "Year"
+                },
+                {
+                  "name": "Quarter"
+                },
+                {
+                  "name": "Month"
+                },
+                {
+                  "name": "Day"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "columns": [
+            {
+              "name": "RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61"
+            },
+            {
+              "name": "ID"
+            },
+            {
+              "name": "Language"
+            },
+            {
+              "name": "Value"
+            }
+          ]
+        },
+        {
+          "name": "User Language",
+          "columns": [
+            {
+              "name": "RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61"
+            },
+            {
+              "name": "Language"
+            },
+            {
+              "name": "Name"
+            },
+            {
+              "name": "UPN"
+            }
+          ],
+          "measures": [
+            {
+              "name": "User"
+            }
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "name": "Language"
+        }
+      ]
+    }
+  },
+  "cultures": [
+    {
+      "name": "en-US",
+      "modifiedTime": "2022-01-26T13:01:15.953333",
+      "structureModifiedTime": "2022-01-31T13:15:51.74",
+      "linguisticMetadata": {
+        "content": {
+          "Version": "1.0.0",
+          "Language": "en-US",
+          "DynamicImprovement": "HighConfidence"
+        },
+        "contentType": "json",
+        "modifiedTime": "2022-01-28T11:54:54.383333"
+      },
+      "translations": {
+        "model": {
+          "name": "Model",
+          "tables": [
+            {
+              "name": "Fruits",
+              "translatedCaption": "Fruits",
+              "columns": [
+                {
+                  "name": "ID",
+                  "translatedCaption": "ID"
+                },
+                {
+                  "name": "Fruit",
+                  "translatedCaption": "Fruit"
+                },
+                {
+                  "name": "Number",
+                  "translatedCaption": "Number"
+                }
+              ]
+            },
+            {
+              "name": "Language",
+              "translatedCaption": "Language",
+              "columns": [
+                {
+                  "name": "ID",
+                  "translatedCaption": "ID"
+                },
+                {
+                  "name": "Language",
+                  "translatedCaption": "Language"
+                },
+                {
+                  "name": "Value",
+                  "translatedCaption": "Value"
+                }
+              ]
+            },
+            {
+              "name": "User Language",
+              "translatedCaption": "User Language",
+              "columns": [
+                {
+                  "name": "Language",
+                  "translatedCaption": "Language"
+                },
+                {
+                  "name": "Name",
+                  "translatedCaption": "Name"
+                },
+                {
+                  "name": "UPN",
+                  "translatedCaption": "UPN"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "de-DE",
+      "modifiedTime": "2022-01-31T13:15:51.736667",
+      "structureModifiedTime": "2022-01-31T13:15:51.736667",
+      "translations": {
+        "model": {
+          "name": "Model",
+          "tables": [
+            {
+              "name": "Fruits",
+              "translatedCaption": "Früchte",
+              "columns": [
+                {
+                  "name": "ID",
+                  "translatedCaption": "ID"
+                },
+                {
+                  "name": "Fruit",
+                  "translatedCaption": "Frucht"
+                },
+                {
+                  "name": "Number",
+                  "translatedCaption": "Anzahl"
+                }
+              ]
+            },
+            {
+              "name": "Language",
+              "translatedCaption": "Sprache",
+              "columns": [
+                {
+                  "name": "ID",
+                  "translatedCaption": "ID"
+                },
+                {
+                  "name": "Language",
+                  "translatedCaption": "Sprache"
+                },
+                {
+                  "name": "Value",
+                  "translatedCaption": "Wert"
+                }
+              ]
+            },
+            {
+              "name": "User Language",
+              "translatedCaption": "Benutzersprache",
+              "columns": [
+                {
+                  "name": "Language",
+                  "translatedCaption": "Sprache"
+                },
+                {
+                  "name": "Name",
+                  "translatedCaption": "Name"
+                },
+                {
+                  "name": "UPN",
+                  "translatedCaption": "UPN"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "de-CH"
+    }
+  ]
+}
