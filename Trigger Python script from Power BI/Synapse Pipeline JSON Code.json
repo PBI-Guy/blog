@@ -1,0 +1,76 @@
+{
+    "name": "PBI Guy Trigger Python",
+    "properties": {
+        "activities": [
+            {
+                "name": "PBI Guy - Trigger Python from Power BI",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "PBI Guy - Trigger Python from Power BI",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "firstNumber": {
+                            "value": {
+                                "value": "@pipeline().parameters.firstNumber",
+                                "type": "Expression"
+                            },
+                            "type": "int"
+                        },
+                        "secondNumber": {
+                            "value": {
+                                "value": "@pipeline().parameters.secondNumber",
+                                "type": "Expression"
+                            },
+                            "type": "int"
+                        },
+                        "user": {
+                            "value": {
+                                "value": "@pipeline().parameters.user",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "upn": {
+                            "value": {
+                                "value": "@pipeline().parameters.upn",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            }
+        ],
+        "parameters": {
+            "firstNumber": {
+                "type": "int",
+                "defaultValue": 15
+            },
+            "secondNumber": {
+                "type": "int",
+                "defaultValue": 15
+            },
+            "user": {
+                "type": "string",
+                "defaultValue": ""
+            },
+            "upn": {
+                "type": "string",
+                "defaultValue": ""
+            }
+        },
+        "annotations": []
+    }
+}
