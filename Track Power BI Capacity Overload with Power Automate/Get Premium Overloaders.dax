@@ -1,0 +1,80 @@
+﻿// Get the Overloader Dataset ID
+
+DEFINE
+    VAR CapacityID = "0B6C577A-E37D-4F5D-A47C-8D07CED0DB4D"
+    VAR vHourDiff = 1000
+
+EVALUATE
+SELECTCOLUMNS (
+    FILTER (
+        CALCULATETABLE (
+            ADDCOLUMNS (
+                ADDCOLUMNS (
+                    SUMMARIZECOLUMNS (
+                        Items[ItemId]
+                        
+                    ),
+                    "Last_OverloadTS", CALCULATE ( MAX ( ThrottlingByItem[OperationStartTime] ) ),
+                    "Sum_throlltletime", CALCULATE ( SUM ( ThrottlingByItem[count_throlltletime] ) )
+                ),
+                "HourDiff", DATEDIFF ( [Last_OverloadTS], NOW (), HOUR )
+            ),
+            ThrottlingByItem[count_throttledoperations] > 0,
+            Capacities[CapacityId] = CapacityID
+        ),
+        [HourDiff] < vHourDiff && [Sum_throlltletime] > 0
+    ),
+    [ItemId],
+    [Last_OverloadTS],
+    [Sum_throlltletime]
+)
+
+
+// Get the Overloader details
+
+DEFINE
+    VAR CapacityID = "0B6C577A-E37D-4F5D-A47C-8D07CED0DB4D"
+    VAR vHourDiff = 1000
+    var vItem= "3402DCD2-282F-4A78-A1CA-47E01CF5954D"
+    
+EVALUATE
+SELECTCOLUMNS (
+    FILTER (
+        CALCULATETABLE (
+            ADDCOLUMNS (
+                ADDCOLUMNS (
+                    SUMMARIZECOLUMNS (
+                        Items[ItemName],
+                        Items[WorkspaceName],
+                        Items[ItemKind],
+                        'Date and Time'[Date],
+                        'Date and Time'[Hour Start]
+                        
+                    ),
+                    "Last_OverloadTS", CALCULATE ( MAX ( ThrottlingByItem[OperationStartTime] ) ),
+                    "Sum_throlltletime", CALCULATE ( SUM ( ThrottlingByItem[count_throlltletime] ) ),
+                    "Sum_throttledoperations", CALCULATE ( SUM ( ThrottlingByItem[count_throttledoperations] ) ),
+                    "Interactive%", FORMAT([xInteractive %],"0.00%"),
+                    "Background%", FORMAT([xBackground %],"0.00%"),
+                    "CPU%", FORMAT([xInteractive %]+[xBackground %],"0.00%"),
+                    "Overloaded_mins",[Count of throttled windows (Matrix)]
+                ),
+                "HourDiff", DATEDIFF ( [Last_OverloadTS], NOW (), HOUR )
+            ),
+            ThrottlingByItem[count_throttledoperations] > 0,
+            Capacities[CapacityId] = CapacityID,
+            Items[ItemId]=vItem
+        ),
+        [HourDiff] < vHourDiff && [Sum_throlltletime] > 0
+    ),
+    [ItemName],
+    [WorkspaceName],
+    [ItemKind],
+    [Last_OverloadTS],
+    [Sum_throlltletime],
+    [Interactive%],
+    [Background%],
+    [CPU%],
+    [Overloaded_mins],
+    [Sum_throttledoperations]
+)
