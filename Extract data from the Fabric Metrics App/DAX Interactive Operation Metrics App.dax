@@ -1,0 +1,59 @@
+﻿--Interactive Operations OPTIMIZED
+
+DEFINE
+	MPARAMETER 'CapacityID' = 
+		"..." --add your capacity ID here
+
+	MPARAMETER 'TimePoint' = 
+		(DATE(2024, 3, 20) + TIME(15, 59, 0))
+
+	VAR varFilter_Capacity = 
+		TREATAS({"..."}, 'Capacities'[capacityId]) --add your capacity ID here
+
+	VAR varFilter_TimePoint = 
+		TREATAS(
+			{(DATE(2024, 3, 20) + TIME(15, 59, 0))},
+			'TimePoints'[TimePoint]
+		)
+		
+	VAR varTable_Details =
+		SUMMARIZECOLUMNS(
+			'TimePointInteractiveDetail'[OperationStartTime],
+			'TimePointInteractiveDetail'[OperationEndTime],
+			'TimePointInteractiveDetail'[Status],
+			'TimePointInteractiveDetail'[Operation],
+			'TimePointInteractiveDetail'[User],
+			'TimePointInteractiveDetail'[OperationId],
+			'TimePointInteractiveDetail'[Billing type],
+			'Items'[WorkspaceName],
+			'Items'[ItemKind],
+			'Items'[ItemName],
+			
+			varFilter_Capacity,
+			varFilter_TimePoint,
+			
+			"Timepoint CU (s)", SUM('TimePointInteractiveDetail'[Timepoint CU (s)]),
+			"Duration (s)", SUM('TimePointInteractiveDetail'[Duration (s)]),
+			"Total CU (s)", CALCULATE(SUM('TimePointInteractiveDetail'[Total CU (s)])),
+			"Throttling", CALCULATE(SUM('TimePointInteractiveDetail'[Throttling (s)])),
+			"% of Base Capacity", CALCULATE(SUM('TimePointInteractiveDetail'[% of Base Capacity]))
+		)
+			
+EVALUATE  SELECTCOLUMNS(
+    varTable_Details,
+    "BillingType", [Billing type],
+    "Status", [Status],
+    "OperationStartTime", [OperationStartTime],
+    "OperationEndTime", [OperationEndTime],
+    "User", [User],
+    "Operation", [Operation],
+    "OperationID", [OperationId],
+    "WorkspaceName", [WorkspaceName],
+    "Item", [ItemKind],
+    "ItemName", [ItemName],
+    "TimepointCUs", [Timepoint CU (s)],
+    "DurationInS", [Duration (s)],
+    "TotalCUInS", [Total CU (s)],
+    "Throttling", [Throttling],
+    "PercentageOfBaseCapacity", [% of Base Capacity]	
+)
